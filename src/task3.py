@@ -1,4 +1,7 @@
 class Animal:
+    """
+        A parent class which will be inherited by child classes (Dog & Cat)
+    """
 
     legs = 4
 
