@@ -1,3 +1,12 @@
+def check(num):
+
+	for i in range(2, num):
+		if (num % i) == 0:
+			break
+		else:
+			return True
+
+
 class PrimeIterator:
     	
 	"""
@@ -8,39 +17,27 @@ class PrimeIterator:
 
 	def __init__(self, n):
 		self.n = n
-		self.count = 1
+		self.ini = 1
+		self.counter = 0
 
 	def __iter__(self):
 		return self
 
 	def __next__(self):
-		self.count += 1		# Increment count which serves as an iteration
-		if self.count <= self.n:	#	Check when to stop iteration
-				if self.count % 2 != 0 and self.count % 3 != 0:		# Modelling the conditions for a prime number
-						result = self.count
-						return result
-				else:
-    					return " "
-		else:
-    			raise StopIteration("End of iteration")
-				
+		if self.counter >= self.n:
+			raise StopIteration
 
-#	Accept n as input
-num = int(input("Enter stop value/number:"))
-if num < 1:
-    	raise ValueError("You must enter number greater than 1")
+		for i in range(self.ini, self.n):
+			if check(i):
+				return i
+		self.counter += 1
 
+limit =  int(input("Enter your upper limit for the prime generator: "))			
 
-prime_numbers = PrimeIterator(num)#
-# for i in prime_numbers:	#	Printing out the prime numbers using forloop
-# 		try:
-# 			print(next(prime_numbers))
-# 		except StopIteration:
-# 			print("End of iteration")
-while True:
-    	print(next(prime_numbers))
+# prime_numbers = PrimeIterator(limit)
+# result = iter(prime_numbers)
 
-
+# print(list(result))
 
 # *********************************************************************************************************************************************
 
@@ -50,22 +47,16 @@ def prime_generator(n):
 		generates prime numbers from `1` to a number `n`,
 		where `n` is greater than 1 
 	"""
-	count = 2
-	num_list = iter(range(2,n))
-
-	while True:
-		element = next(num_list)
-		if count < n:
-			if int(element) % 2 != 0 and int(element) % 3 != 0:
-				print(count, element)
-				return element
-				count += 1
+	for num in range(3, n + 1):
+		# all prime numbers are greater than 1
+		if num > 1:
+			for i in range(2, num):
+				if (num % i) == 0:
+					break
 			else:
-    				return ""
-		raise StopIteration("End of iteration")
+				yield num
 
-# result = prime_generator(num)
-
-# print(result)
-# print(result)
+primes = prime_generator(limit)
+print(next(primes))
+print(next(primes))
 
