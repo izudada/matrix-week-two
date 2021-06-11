@@ -41,6 +41,7 @@ def prime_generator(n):
 		generates prime numbers from `1` to a number `n`,
 		where `n` is greater than 1 
 	"""
+	count = 0
 	for num in range(3, n + 1):
 		# all prime numbers are greater than 1
 		if num > 1:
@@ -49,9 +50,20 @@ def prime_generator(n):
 					break
 			else:
 				yield num
+			count += 1
 
-# primes = prime_generator(limit)
+primes = prime_generator(limit)
 
-# print(next(primes))
-# print(next(primes))
-
+# try:
+# 	print(next(primes))
+# 	print(next(primes))
+# 	print(next(primes))
+# 	print(next(primes))
+# 	print(next(primes))
+# 	print(next(primes))
+# 	print(next(primes))
+# 	print(next(primes))
+# 	print(next(primes))
+# 	print(next(primes))
+# except StopIteration:
+# 	print("End of iteration")
