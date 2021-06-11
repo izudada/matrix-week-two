@@ -1,11 +1,5 @@
-def check(num):
-
-	for i in range(2, num):
-		if (num % i) == 0:
-			break
-		else:
-			return True
-
+#	Collect user upper bound/n
+limit =  int(input("Enter your upper limit for the prime generator: "))
 
 class PrimeIterator:
     	
@@ -17,27 +11,27 @@ class PrimeIterator:
 
 	def __init__(self, n):
 		self.n = n
-		self.ini = 1
-		self.counter = 0
+		self.ini = 3
 
 	def __iter__(self):
 		return self
 
 	def __next__(self):
-		if self.counter >= self.n:
-			raise StopIteration
+		result = list()
+		for num in range(self.ini, self.n + 1):
+			# all prime numbers are greater than 1
+			if num > 1:
+				for i in range(3, num):
+					if (num % i) == 0:
+						break
+					else:
+						result.append(num)
+		return result
 
-		for i in range(self.ini, self.n):
-			if check(i):
-				return i
-		self.counter += 1
-
-limit =  int(input("Enter your upper limit for the prime generator: "))			
-
-# prime_numbers = PrimeIterator(limit)
-# result = iter(prime_numbers)
-
-# print(list(result))
+# result = PrimeIterator(limit)
+# print(next(result))
+# print(next(result))
+# print(next(result))
 
 # *********************************************************************************************************************************************
 
@@ -56,7 +50,8 @@ def prime_generator(n):
 			else:
 				yield num
 
-primes = prime_generator(limit)
-print(next(primes))
-print(next(primes))
+# primes = prime_generator(limit)
+
+# print(next(primes))
+# print(next(primes))
 
